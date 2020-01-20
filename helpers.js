@@ -24,3 +24,24 @@ function appendTd(tr, value) {
 
   tr.append(newTd);
 }
+
+// appends a delete button 
+function appendDeleteBtn(tr) {
+  let newTd = document.createElement('td');
+  newTd.innerText = 'X';
+
+  newTd.addEventListener('click', (e) => {
+    let delBtn = e.target.closest('tr');
+    console.log(delBtn);
+
+    delete allServers[delBtn.id];
+    delete allPayments[delBtn.id];
+
+    delBtn.parentNode.removeChild(delBtn);
+    updateServerTable();
+    updateSummary();
+
+  });
+
+  tr.append(newTd);
+}
